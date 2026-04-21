@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEBABEBA RIDES - Book Your Journey</title>
+    <link rel="stylesheet" href="beba.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">BEBABEBA RIDES</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#vehicles">Vehicles</a></li>
+                <li><a href="#booking">Book Now</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to BEBABEBA RIDES</h1>
+            <p>Your Reliable Transport Partner for Short & Long Distance Journeys</p>
+            <a href="#booking" class="cta-button">Book Your Ride Now</a>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section id="vehicles" class="vehicles">
+        <h2>Our Fleet</h2>
+        <div class="vehicles-grid">
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="https://via.placeholder.com/300x200?text=Minivan" alt="Minivan">
+                </div>
+                <h3>Minivan</h3>
+                <p>Perfect for small groups</p>
+                <ul class="vehicle-features">
+                    <li>Capacity: 6-8 passengers</li>
+                    <li>Comfortable seating</li>
+                    <li>Short & Long distance</li>
+                </ul>
+                <p class="price">$45 - $150</p>
+            </div>
+
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="https://via.placeholder.com/300x200?text=Van" alt="Van">
+                </div>
+                <h3>Van</h3>
+                <p>Ideal for medium groups</p>
+                <ul class="vehicle-features">
+                    <li>Capacity: 10-14 passengers</li>
+                    <li>Spacious interior</li>
+                    <li>Short & Long distance</li>
+                </ul>
+                <p class="price">$70 - $250</p>
+            </div>
+
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="https://via.placeholder.com/300x200?text=Bus" alt="Bus">
+                </div>
+                <h3>Bus</h3>
+                <p>For large groups</p>
+                <ul class="vehicle-features">
+                    <li>Capacity: 30-50 passengers</li>
+                    <li>Premium comfort</li>
+                    <li>Short & Long distance</li>
+                </ul>
+                <p class="price">$150 - $500</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="booking-section">
+        <h2>Book Your Ride</h2>
+        <form id="bookingForm" class="booking-form">
+            <div class="form-group">
+                <label for="vehicleType">Vehicle Type:</label>
+                <select id="vehicleType" required>
+                    <option value="">Select a vehicle</option>
+                    <option value="minivan">Minivan (6-8 passengers)</option>
+                    <option value="van">Van (10-14 passengers)</option>
+                    <option value="bus">Bus (30-50 passengers)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pickupLocation">Pickup Location:</label>
+                <input type="text" id="pickupLocation" placeholder="Enter pickup location" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dropoffLocation">Dropoff Location:</label>
+                <input type="text" id="dropoffLocation" placeholder="Enter dropoff location" required>
+            </div>
+
+            <div class="form-group">
+                <label for="journeyType">Journey Type:</label>
+                <select id="journeyType" required>
+                    <option value="">Select journey type</option>
+                    <option value="short">Short Distance (0-50 km)</option>
+                    <option value="long">Long Distance (50+ km)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="departureDate">Departure Date:</label>
+                <input type="date" id="departureDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="departureTime">Departure Time:</label>
+                <input type="time" id="departureTime" required>
+            </div>
+
+            <div class="form-group">
+                <label for="passengers">Number of Passengers:</label>
+                <input type="number" id="passengers" min="1" max="50" placeholder="Enter number of passengers" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <div id="estimateSection" class="estimate-section">
+                <h3>Estimated Cost: <span id="estimateCost">$0.00</span></h3>
+            </div>
+
+            <button type="button" id="calculateBtn" class="btn-secondary">Calculate Cost</button>
+            <button type="submit" class="btn-primary">Proceed to Payment</button>
+        </form>
+    </section>
+
+    <!-- Payment Section (Modal) -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Payment Details</h2>
+            <form id="paymentForm" class="payment-form">
+                <div class="form-group">
+                    <label for="cardName">Name on Card:</label>
+                    <input type="text" id="cardName" placeholder="Enter name on card" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expiry">Expiry Date:</label>
+                        <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+                    </div>
+                </div>
+
+                <div class="booking-summary">
+                    <h3>Booking Summary</h3>
+                    <p><strong>Vehicle:</strong> <span id="summaryVehicle">-</span></p>
+                    <p><strong>From:</strong> <span id="summaryFrom">-</span></p>
+                    <p><strong>To:</strong> <span id="summaryTo">-</span></p>
+                    <p><strong>Date:</strong> <span id="summaryDate">-</span></p>
+                    <p><strong>Time:</strong> <span id="summaryTime">-</span></p>
+                    <p><strong>Passengers:</strong> <span id="summaryPassengers">-</span></p>
+                    <p class="total-amount"><strong>Total Amount:</strong> $<span id="totalAmount">0.00</span></p>
+                </div>
+
+                <button type="submit" class="btn-primary">Complete Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <p>Email: support@bebabeba-rides.com</p>
+            <p>Phone: +1 (555) 123-4567</p>
+            <p>Address: 123 Transport Ave, City, Country</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 BEBABEBA RIDES. All rights reserved.</p>
+    </footer>
+
+    <script src="beba.js"></script>
+</body>
+</html>
