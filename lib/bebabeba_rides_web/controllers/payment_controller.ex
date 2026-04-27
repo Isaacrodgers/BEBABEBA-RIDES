@@ -1,11 +1,10 @@
 
-defmodule BebabebaBcakend.Web.PaymentController do
-  use BebabebaBcakend.Web, :controller
+defmodule BebabebaBackendWeb.PaymentController do
+  use BebabebaBackendWeb, :controller
 
-  alias BebabebaBcakend.Payments
-  alias BebabebaBcakend.Schemas.Payment
-
-  action_fallback BebabebaBcakend.Web.FallbackController
+  alias BebabebaBackend.Payments
+  alias BebabebaBackend.Schemas.Payment
+  action_fallback BebabebaBackendWeb.FallbackController
 
   def create_payment(conn, %{"payment" => payment_params}) do
     with {:ok, %Payment{} = payment} <- Payments.create_payment(payment_params) do

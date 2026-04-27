@@ -1,15 +1,15 @@
 # lib/bebabeba_backend/web/controllers/user_controller.ex
 
-defmodule BebabebaBcakend.Web.UserController do
-  use BebabebaBcakend.Web, :controller
+defmodule BebabebaBackendWeb.UserController do
+  use BebabebaBackendWeb, :controller
 
-  alias BebabebaBcakend.Accounts
-  alias BebabebaBcakend.Schemas.User
+  alias BebabebaBackend.Accounts
+  alias BebabebaBackend.Schemas.User
 
-  action_fallback BebabebaBcakend.Web.FallbackController
+  action_fallback BebabebaBackend.Web.FallbackController
 
   def register(conn, %{"user" => user_params}) do
-    with {:ok, %User{} = user} <- Accounts.register_user(user_params) do
+    with {:ok,%User{} = user} <- Accounts.register_user(user_params) do
       conn
       |> put_status(:created)
       |> render("user.json", user: user)

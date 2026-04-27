@@ -1,4 +1,4 @@
-defmodule Bebabeba.MixProject do
+defmodule BebabebaBackendWeb.MixProject do
   use Mix.Project
 
   def project do

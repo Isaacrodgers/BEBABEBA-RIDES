@@ -1,49 +1,34 @@
-# lib/bebabeba_backend/web/controllers/booking_controller.ex
+defmodule BebabebaBackendWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :bebabeba_backend
 
-defmodule BebabebaBcakend.Web.BookingController do
-  use BebabebaBcakend.Web, :controller
+  socket "/socket", BebabebaBackendWeb.UserSocket
 
-  alias BebabebaBcakend.Bookings
-  alias BebabebaBcakend.Schemas.Booking
+  plug Plug.Static,
+    at: "/",
+    from: :bebabeba_backend,
+    gzip: false,
+    only: ~w(css fonts images js favicon.ico robots.txt)
 
-  action_fallback BebabebaBcakend.Web.FallbackController
-
-  def create_booking(conn, %{"booking" => booking_params}) do
-    with {:ok, %Booking{} = booking} <- Bookings.create_booking(booking_params) do
-      conn
-      |> put_status(:created)
-      |> render("booking.json", booking: booking)
-    end
+  # Enable code reloading in development
+  if code_reloading? do
+    plug Phoenix.CodeReloader
   end
 
-  def get_booking(conn, %{"id" => id}) do
-    booking = Bookings.get_booking!(id)
-    render(conn, "booking.json", booking: booking)
-  end
+  plug Plug.RequestId
+  plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
-  def list_user_bookings(conn, %{"user_id" => user_id}) do
-    bookings = Bookings.list_user_bookings(user_id)
-    render(conn, "bookings.json", bookings: bookings)
-  end
+  plug Plug.Parsers,
+    parsers: [:urlencoded, :multipart, :json],
+    pass: ["*/*"],
+    json_decoder: Jason
 
-  def update_booking(conn, %{"id" => id, "booking" => booking_params}) do
-    booking = Bookings.get_booking!(id)
+  plug Plug.MethodOverride
+  plug Plug.Head
 
-    with {:ok, %Booking{} = booking} <- Bookings.update_booking(booking, booking_params) do
-      render(conn, "booking.json", booking: booking)
-    end
-  end
+  plug Plug.Session,
+    store: :cookie,
+    key: "_bebabeba_backend_key",
+    signing_salt: "randomsalt"
 
-  def cancel_booking(conn, %{"id" => id}) do
-    booking = Bookings.get_booking!(id)
-
-    with {:ok, %Booking{} = booking} <- Bookings.cancel_booking(booking) do
-      render(conn, "booking.json", booking: booking)
-    end
-  end
-
-  def calculate_cost(conn, %{"vehicle_id" => vehicle_id, "distance_km" => distance_km, "passenger_count" => passenger_count}) do
-    cost = Bookings.calculate_booking_cost(vehicle_id, distance_km, passenger_count)
-    render(conn, "cost.json", cost: cost)
-  end
+  plug BebabebaBackendWeb.Router
 end
